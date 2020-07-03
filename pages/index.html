@@ -1,0 +1,397 @@
+<html>    {% load static %}
+<head>
+	<meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>Digital Voting</title>
+
+<style>
+html {
+	box-sizing: border-box;
+	font-family: sans-serif;
+	line-height: 1.15;
+	-webkit-text-size-adjust: 100%;
+	-ms-text-size-adjust: 100%;
+	-ms-overflow-style: scrollbar;
+	-webkit-tap-highlight-color: transparent;
+}
+* {
+	margin: 0px;
+	padding: 0px;
+	box-sizing: border-box;
+}
+*, ::after, ::before {
+	box-sizing: inherit;
+}
+.login100-form {
+	width: 100%;
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: -moz-box;
+	display: -ms-flexbox;
+	display: flex;
+	justify-content: space-between;
+	flex-wrap: wrap;
+}
+.p-t-190 {
+	padding-top: 60px;
+}
+.p-b-30 {
+	padding-bottom: 30px;
+}
+.wrap-login100 {
+	width: 390px;
+	background: transparent;
+}
+.container-login100 {
+	width: 100%;
+	min-height: 100vh;
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: -moz-box;
+	display: -ms-flexbox;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	align-items: center;
+	padding: 15px;
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-position: center;
+	position: relative;
+	z-index: 1;
+}
+.container-login100::before {
+	content: "";
+	display: block;
+	position: absolute;
+	z-index: -1;
+	width: 100%;
+	height: 100%;
+	top: 0px;
+	left: 0px;
+	opacity: 0.9;
+}
+.limiter {
+	width: 100%;
+	margin: 0 auto;
+}
+body {
+	margin: 0;
+	font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+	font-size: 1rem;
+	font-weight: 400;
+	line-height: 1.5;
+	color: #212529;
+	background-color: #fff;
+}
+body, html {
+	height: 100%;
+	font-family: Montserrat-Regular, sans-serif;
+}
+.p-t-20 {
+	padding-top: 20px;
+}
+.p-b-45 {
+	padding-bottom: 45px;
+}
+.login100-form-title {
+	font-family: Montserrat-ExtraBold;
+	font-size: 40px;
+	color: rgb(0, 0, 0);
+	line-height: 1.2;
+	text-align: center;
+	width: 100%;
+	display: block;
+}
+.m-b-10 {
+	margin-bottom: 10px;
+}
+.wrap-input100 {
+	position: relative;
+	width: 100%;
+	z-index: 1;
+}
+.validate-input {
+	position: relative;
+}
+.p-t-10 {
+	padding-top: 10px;
+}
+.container-login100-form-btn {
+	width: 100%;
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: -moz-box;
+	display: -ms-flexbox;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+}
+.text-center {
+	text-align: center !important;
+}
+.p-t-25 {
+	padding-top: 25px;
+}
+.p-b-230 {
+	padding-bottom: 230px;
+}
+.text-center {
+	text-align: center;
+}
+.w-full {
+	width: 100%;
+}
+a {
+	color: #007bff;
+	text-decoration: none;
+	background-color: transparent;
+	-webkit-text-decoration-skip: objects;
+}
+[role=button], a, area, button, input, label, select, summary, textarea {
+	-ms-touch-action: manipulation;
+	touch-action: manipulation;
+}
+a {
+	font-family: Montserrat-Regular;
+	font-size: 14px;
+	line-height: 1.7;
+	color: #666666;
+	margin: 0px;
+	transition: all 0.4s;
+	-webkit-transition: all 0.4s;
+	-o-transition: all 0.4s;
+	-moz-transition: all 0.4s;
+}
+.txt1 {
+	font-family: Montserrat-Regular;
+	font-size: 16px;
+	color: #cccccc;
+	line-height: 1.4;
+}
+.fa {
+	display: inline-block;
+	font: normal normal normal 14px/1 FontAwesome;
+	font-size: inherit;
+	text-rendering: auto;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+.fa-long-arrow-right::before {
+	content: "\f178";
+}
+button, input, optgroup, select, textarea {
+	margin: 0;
+	font-family: inherit;
+	font-size: inherit;
+	line-height: inherit;
+}
+button, input {
+	overflow: visible;
+}
+button, select {
+	text-transform: none;
+}
+[type=reset], [type=submit], button, html [type=button] {
+	-webkit-appearance: button;
+}
+button {
+	outline: none !important;
+	border: none;
+	background: transparent;
+}
+.login100-form-btn {
+	font-family: Montserrat-Bold;
+	font-size: 15px;
+	line-height: 1.5;
+	color: #ffffff;
+	width: 100%;
+	height: 50px;
+	border-radius: 25px;
+	background: #3b3b3b;
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: -moz-box;
+	display: -ms-flexbox;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	padding: 0 25px;
+	-webkit-transition: all 0.4s;
+	-o-transition: all 0.4s;
+	-moz-transition: all 0.4s;
+	transition: all 0.4s;
+	position: relative;
+	z-index: 1;
+}
+.login100-form-btn::before {
+	content: "";
+	display: block;
+	position: absolute;
+	z-index: -1;
+	width: 100%;
+	height: 100%;
+	border-radius: 25px;
+	top: 0px;
+	left: 0px;
+	background: #005bea;
+	background: -webkit-linear-gradient(left, #005bea, #00c6fb);
+	background: -o-linear-gradient(left, #005bea, #00c6fb);
+	background: -moz-linear-gradient(left, #005bea, #00c6fb);
+	background: linear-gradient(left, #005bea, #00c6fb);
+	-webkit-transition: all 0.4s;
+	-o-transition: all 0.4s;
+	-moz-transition: all 0.4s;
+	transition: all 0.4s;
+	opacity: 0;
+}
+input {
+	outline: none;
+	border: none;
+}
+.input100 {
+	font-family: Montserrat-Bold;
+	font-size: 15px;
+	line-height: 1.2;
+	color: #ffffff;
+	display: block;
+	width: 100%;
+	background: rgb(0, 0, 0);
+	height: 50px;
+	border-radius: 25px;
+	padding: 0 30px 0 53px;
+}
+input:-ms-input-placeholder {
+	color: #999999;
+}
+.focus-input100 {
+	display: block;
+	position: absolute;
+	border-radius: 25px;
+	bottom: 8px;
+	left: 260px;
+	z-index: -1;
+    font-size: 18px;
+    font-family: Montserrat-Regular, sans-serif;
+	width: 100%;
+	height: 100%;
+	box-shadow: 0px 0px 0px 0px;
+	color:black;
+}
+.symbol-input100 {
+	font-size: 15px;
+	color: #999999;
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: -moz-box;
+	display: -ms-flexbox;
+	display: flex;
+	align-items: center;
+	position: absolute;
+	border-radius: 25px;
+	bottom: 0px;
+	left: 0px;
+	width: 100%;
+	height: 100%;
+	padding-left: 30px;
+	pointer-events: none;
+	-webkit-transition: all 0.4s;
+	-o-transition: all 0.4s;
+	-moz-transition: all 0.4s;
+	transition: all 0.4s;
+}
+.fa-lock::before {
+	content: "\f023";
+}
+textarea:focus, input:focus {
+	border-color: transparent !important;
+}
+.input100:focus + .focus-input100 {
+	-webkit-animation: anim-shadow 0.5s ease-in-out forwards;
+	animation: anim-shadow 0.5s ease-in-out forwards;
+}
+.input100:focus + .focus-input100 + .symbol-input100 {
+	color: #00c6fb;
+	padding-left: 23px;
+}
+    .error{
+        width: 340px;
+        height: auto;
+        padding: 4px;
+        margin: 30;
+        background-color: black;
+        border-radius: 40px;
+    }
+
+</style>
+    <script>
+        function show() {
+            var x = document.getElementById("password");
+            if(x.type == "password") {
+                x.type = "text";
+            }
+            else{
+                x.type ="password";
+            }
+        }
+    </script>
+</head>
+<body style="background-image:url('{% static 'images/loginbg.jpg' %}'); background-size:cover; background-position:center;">
+	
+    <div class="limiter"><div class="container-login100"><div class="wrap-login100 p-t-190 p-b-30">
+		<form class="login100-form validate-form" method="POST" action="login" onsubmit="validateCaptcha()">
+			{% csrf_token %}
+					<span class="login100-form-title p-t- p-b-40 m-b-10" style="color: orange; background-color: black; opacity: 0.9;">
+					DIG<span style="color: white">ITAL VOT</span><span style="color: green">ING</span>
+					</span>
+					<div class="wrap-input100 validate-input m-b-10">
+						<select name="loginas" required class="input100 validate-input">
+							<option value="" name="">Login as</option>
+                            <option value="admin" name="admin">Admin</option>
+                            <option value="voter" name="voter">Voter</option>
+                        </select>
+						<span class="focus-input100"></span>
+					</div>
+					<div class="wrap-input100 validate-input m-b-10" data-validate="Username is required">
+						<input name="username" class="input100" required type="text" placeholder="Username">
+						<span class="focus-input100"></span>
+					</div>
+
+					<div class="wrap-input100 validate-input m-b-10" data-validate="Password is required">
+						<input name="password" class="input100" required type="password" placeholder="Password" id="password">
+						
+						<a style="position: absolute;left: 355px; bottom: 16px;">
+							<img src="{% static 'images/blind.png' %}"  onclick="show()" >
+						</a>
+					</div>
+
+					<div class="container-login100-form-btn p-t-10">
+						<input type="submit"  name="login" class="login100-form-btn" value="Login">
+					</div>
+            </form>
+            <div class="error">
+					<div class="text-center w-full">
+						<a class="txt1" href="forgotpassword">
+							Forgot Password?
+						</a>
+					</div>
+
+					<div class="text-center w-full">
+						<a class="txt1" href="registervidpage">
+							Register
+						</a>
+					</div>
+                <div> 
+                </div>
+			</div>
+			<div class="login100-form-title p-t- p-b-40 m-b-10">
+			{% for message in messages %}
+                <h3 align="center">{{message}}</h3>
+			{% endfor %}
+			</div>
+        </div>
+        </div>
+    </div>
+    </body>
+</html>

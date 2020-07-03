@@ -1,0 +1,13 @@
+ {% extends 'voter/master2.html' %}
+ {% block title %}  home {% endblock title %}
+ {% load static %}
+ {% block content %}
+ {% csrf_token %}
+  <section id="intro">
+    <div class="intro-container wow fadeIn">
+      <h1 class="mb-4 pb-0">Welcome To<br><span>Digital Voting</span></h1>
+      <a href="/voter/vprocess" class="about-btn scrollto">How to Vote?</a>
+    </div>
+  </section>
+
+  {% endblock content %}

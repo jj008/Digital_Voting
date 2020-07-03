@@ -1,0 +1,48 @@
+body{
+    background:rgb(255, 255, 255);
+}
+.one
+{
+    text-align: center;
+
+}
+.login
+{
+    font-size: 30px;;
+}
+.table
+{
+        top: 25%;
+    left:40%;
+    position: fixed;
+    height:300px;
+    width: 300px;
+    font-size: 20px;
+  
+    border-radius: 10px;
+  overflow: hidden;
+
+  box-shadow: 0 3px 20px 0px rgba(0, 0, 0, 0.1);
+  -moz-box-shadow: 0 3px 20px 0px rgba(0, 0, 0, 0.1);
+  -webkit-box-shadow: 0 3px 20px 0px rgba(0, 0, 0, 0.1);
+  -o-box-shadow: 0 3px 20px 0px rgba(0, 0, 0, 0.1);
+  -ms-box-shadow: 0 3px 20px 0px rgba(0, 0, 0, 0.1);
+}
+td
+{
+    text-align: center;
+}
+.two
+{
+    left: 90%;  
+ top: 80%;
+ position: fixed;
+    
+}
+.button
+{
+ height: 25px;
+ width: 300px;
+ background-color:skyblue;
+
+}

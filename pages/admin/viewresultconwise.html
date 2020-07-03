@@ -1,0 +1,96 @@
+ {% extends 'admin/master.html' %}
+ {% load static %}
+ {% block content %}
+<body>
+  <section id="main-content" style=" margin-right:110px;">
+      <section class="wrapper">
+        <div class="row">
+          <div class="col-lg-12">
+              <h3 class="page-header"><i class="fa fa-file-text-o"></i>View Result</h3>
+            <ol class="breadcrumb">
+              <li><i class="fa fa-home"></i>Home</li>
+              <li><i class="icon_document_alt"></i>Result</li>
+              <li><i class="fa fa-file-text-o"></i>View Result</li>
+            </ol>
+          </div>
+      </div>
+        <div class="row">
+          <div class="col-lg-12">
+            <section class="panel" >
+              <header class="panel-heading">
+                  Result
+              </header>
+              <div class="panel-body">
+                  <form class="form-horizontal" action="view_result_filter" method="POST">
+                      {% csrf_token %}
+                    <div class="form-group">
+                    <label class="col-sm-2 control-label">Election ID</label>
+                    <div class="col-sm-10">
+                        <input type="text" name="e_id" class="form-control round-input" value="{{electionid}}" style="width:80%;" readonly>
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <label class="col-sm-2 control-label">State/UT</label>
+                    <div class="col-sm-10">
+                      <input type="text" class="form-control round-input" value="{{state}}" style="width:80%;" readonly>
+                    </div>
+                  </div>
+                    <div class="form-group">
+                    <label class="col-sm-2 control-label">Constituency</label>
+                    <div class="col-sm-10">
+                         <select name="constituency" class="form-control round-input" style="width:80%;" required>
+                             <option value="">Constituency</option>
+                             {% for i in constituency %}
+                             <option value="{{i}}">{{i}}</option>
+                             {% endfor %}
+                            </select>
+                    </div>
+                  </div>
+                    <div class="form-group">
+                      <div class="col-lg-offset-2 col-lg-10">
+                        <button class="btn btn-primary" name="view_result" type="submit">Filter</button>
+                      </div>
+                    </div>
+                  </form>
+
+                  <div class="table-responsive">
+                    <table class="table" border="1">
+                      <tbody>
+                        <tr>
+                            <th>Candidate</th>
+                            <th>Party</th>
+                            <th>Online Votes</th>
+                            <th>EVM Votes</th>
+                            <th>Total Votes</th>
+                            <th>% of Votes</th>
+                        </tr>
+                        {% for i,j in result %}
+                          <tr>
+                            <td>{{i.candidate_name}}</td>
+                            <td>{{i.candidate_party}}</td>
+                            <td>{{i.online_votes}}</td>
+                            <td>{{i.evm_votes}}</td>
+                            <td>{{i.total_votes}}</td>
+                            <td>{{j}}</td>
+                          </tr>
+                        {% endfor %}
+                         <tr>
+                          <th>Total</th>
+                          <th></th>
+                          <th>{{totalonline}}</th>
+                          <th>{{totalevm}}</th>
+                          <th>{{totalvotes}}</th>
+                          <th></th>
+                        </tr>
+                      </tbody>
+                    </table>
+                </div>
+              </div>
+            </section>
+          </div>
+        </div>
+      </section>
+  </section>
+</body>
+ {% endblock content %}

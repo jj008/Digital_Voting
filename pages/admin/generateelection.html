@@ -1,0 +1,136 @@
+ {% extends 'admin/master.html' %}
+ {% block title %}  home {% endblock title %}
+ {% load static %}
+ {% block content %}
+<body>
+    <section id="main-content" style=" margin-right:110px;">
+      <section class="wrapper">
+        <div class="row">
+          <div class="col-lg-12">
+              <h3 class="page-header"><i class="fa fa-file-text-o"></i>Generate Election</h3>
+            <ol class="breadcrumb">
+              <li><i class="fa fa-home"></i>Home</li>
+              <li><i class="icon_document_alt"></i>Election</li>
+              <li><i class="fa fa-file-text-o"></i>Generate Election</li>
+            </ol>
+          </div>
+      </div>
+        <div class="row">
+          <div class="col-lg-12">
+            <section class="panel" >
+              <header class="panel-heading">
+                  Election
+              </header>
+              <div class="panel-body">
+                  <form class="form-horizontal" method="POST" action="generate_election">
+                      {% csrf_token %}
+                    <div class="form-group">
+                    <label class="col-sm-2 control-label">Election ID</label>
+                    <div class="col-sm-10">
+                      <input type="text" class="form-control round-input" required name="eno" style="width:80%;">
+                    </div>
+                  </div>
+                      <div class="form-group">
+                    <label class="col-sm-2 control-label">Election Type</label>
+                    <div class="col-sm-10">
+                        <div class="btn-group open">
+                            <select name="electiontype" required class="form-control round-input" style="width:80%;">
+                        <option value="" selected="">Election Type</option>
+                        <option value="AC-GENERAL">AC-GENERAL</option>
+                        <option value="PC-GENERAL">PC-GENERAL</option>
+                            </select>
+                        </div>
+                          </div>
+                      </div>
+                      <div class="form-group">
+                    <label class="col-sm-2 control-label">State</label>
+                    <div class="col-sm-10">
+                        <div class="btn-group open">
+                            <select name="state" required class="form-control round-input" id="state" style="width:80%;">
+                        <option value="#" selected="">Please select an State/UT</option>
+                        <option value="ANDAMAN AND NICOBAR ISLANDS">ANDAMAN AND NICOBAR ISLANDS</option>
+                        <option value="ANDHRA PRADESH">ANDHRA PRADESH</option>
+                        <option value="ARUNACHAL PRADESH">ARUNACHAL PRADESH</option>
+                        <option value="ASSAM">ASSAM</option>
+                        <option value="BIHAR">BIHAR</option>
+                        <option value="CHANDIGARH">CHANDIGARH</option>
+                        <option value="CHHATTISGARH">CHHATTISGARH</option>
+                        <option value="DADRA &amp; NAGAR HAVELI">DADRA &amp; NAGAR HAVELI</option>
+                        <option value="DAMAN &amp; DIU">DAMAN &amp; DIU</option>
+                        <option value="GOA">GOA</option>
+                        <option value="GUJARAT">GUJARAT</option>
+                        <option value="HARYANA">HARYANA</option>
+                        <option value="HIMACHAL PRADESH">HIMACHAL PRADESH</option>
+                        <option value="JAMMU & KASHMIR">JAMMU & KASHMIR</option>
+                        <option value="JHARKHAND">JHARKHAND</option>
+                        <option value="KARNATAKA">KARNATAKA</option>
+                        <option value="KERALA">KERALA</option>
+                        <option value="LAKSHADWEEP">LAKSHADWEEP</option>
+                        <option value="MADHYA PRADESH">MADHYA PRADESH</option>
+                        <option value="MAHARASHTRA">MAHARASHTRA</option>
+                        <option value="MANIPUR">MANIPUR</option>
+                        <option value="MEGHALAYA">MEGHALAYA</option>
+                        <option value="MIZORAM">MIZORAM</option>
+                        <option value="NAGALAND">NAGALAND</option>
+                        <option value="NCT OF DELHI">NCT OF DELHI </option>
+                        <option value="ODISHA">ODISHA</option>
+                        <option value="PUDUCHERRY">PUDUCHERRY</option>
+                        <option value="PUNJAB">PUNJAB</option>
+                        <option value="RAJASTHAN">RAJASTHAN</option>
+                        <option value="SIKKIM">SIKKIM</option>
+                        <option value="TAMIL NADU">TAMIL NADU</option>
+                        <option value="TELANGANA">TELANGANA</option>
+                        <option value="TRIPURA">TRIPURA</option>
+                        <option value="UTTAR PRADESH">UTTAR PRADESH</option>
+                        <option value="UTTARAKHAND">UTTARAKHAND</option>
+                        <option value="WEST BENGAL">WEST BENGAL</option>
+                    </select>
+                    </div>
+                    </div>
+                      </div>
+                      <div class="form-group">
+                    <label class="col-sm-2 control-label">Start Date</label>
+                    <div class="col-sm-10">
+                      <input type="date" class="form-control round-input" required name="sdate" style="width:80%;">
+                    </div>
+                  </div>
+                      <div class="form-group">
+                    <label class="col-sm-2 control-label">Start Time</label>
+                    <div class="col-sm-10">
+                      <input type="time" class="form-control round-input" required name="stime" style="width:80%;">
+                    </div>
+                  </div>
+                      <div class="form-group">
+                    <label class="col-sm-2 control-label">End Date</label>
+                    <div class="col-sm-10">
+                      <input type="date" class="form-control round-input" required name="edate" style="width:80%;">
+                    </div>
+                  </div>
+                      <div class="form-group">
+                    <label class="col-sm-2 control-label">End Time</label>
+                    <div class="col-sm-10">
+                      <input type="time" class="form-control round-input" required name="etime" style="width:80%;">
+                    </div>
+                  </div>
+                <div class="form-group">
+                      <div class="col-lg-offset-2 col-lg-10">
+                        <button class="btn btn-primary" type="submit">Generate Election</button>
+                        <button class="btn btn-default" type="reset">Reset</button>
+                      </div>
+                    </div>   
+                      <div class="form-group">
+                      <div class="col-lg-offset-2 col-lg-10">
+                           {% for message in messages %}
+                            <h3> {{message}} </h3>
+                            {% endfor %}
+                      </div>
+                    </div> 
+                </form>
+              </div>
+            </section>
+            </div>
+          </div>
+      </section>
+      </section>
+</body>
+ {% endblock content %}

@@ -1,0 +1,44 @@
+table
+{
+    background-color:white;
+    top: 25%;
+    left:33%;
+    position: fixed;
+    height:400px;
+    width: 600px;
+    font-size: 20px;
+    text-align: center;
+  
+    border-radius: 10px;
+  overflow: hidden;
+
+  box-shadow: 0 3px 20px 0px rgba(0, 0, 0, 0.1);
+  -moz-box-shadow: 0 3px 20px 0px rgba(0, 0, 0, 0.1);
+  -webkit-box-shadow: 0 3px 20px 0px rgba(0, 0, 0, 0.1);
+  -o-box-shadow: 0 3px 20px 0px rgba(0, 0, 0, 0.1);
+  -ms-box-shadow: 0 3px 20px 0px rgba(0, 0, 0, 0.1);
+}
+.nav1
+{
+background-color:blue;
+color: white;
+font-size: 40px;
+
+}
+.a{
+    text-decoration: none;
+    color:white;
+
+}
+.one
+{
+    text-align: center;
+    font-size: 25px;
+
+}
+button
+{
+ 
+ background-color:skyblue;
+
+}

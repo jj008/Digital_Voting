@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Forgot Password OTP</title>
+</head>
+<body>
+<div>
+    {% for message in messages %}
+        <h3> {{message}} {{mno}}</h3>
+    {% endfor %}
+</div>
+    <form action="forgotpassotp" method="POST">
+        {% csrf_token %}
+        <table>
+             <tr>
+                <td>Enter OTP</td>
+            </tr>
+            <tr>
+                <td><input type="password" name="otp"></td>
+            </tr>
+            <tr>
+                <td><input type="submit" name="otpsubmit" class="button" value="Submit"></td>
+            </tr>
+        </table>
+    </form>
+</body>
+</html>

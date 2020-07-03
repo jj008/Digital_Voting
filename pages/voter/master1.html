@@ -1,0 +1,425 @@
+<html>
+<head>
+<title></title>
+	{% load static %}
+      <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+html, body {
+	height: 100%;
+}
+body {
+	margin: 0px;
+	padding: 0px;
+	background: white;
+	font-family: "Questrial", sans-serif;
+	font-size: 12pt;
+	color: rgba(0, 0, 0, 0.6);
+}
+#header-wrapper {
+	overflow: hidden;
+	background-color: deepskyblue;
+}
+.wrapper {
+	overflow: hidden;
+	padding: 0em 0em 5em 0em;
+	background: #FFF;
+}
+#footer {
+	overflow: hidden;
+	padding: 5em 0em;
+	background: #E3F0F7;
+	text-align: center;
+}
+#copyright {
+	overflow: hidden;
+	padding: 5em 0em;
+	border-top: 20px solid rgba(255,255,255,0.08);
+	text-align: center;
+}
+p, ol, ul {
+	margin-top: 0px;
+}
+p {
+	line-height: 180%;
+}
+#copyright p {
+	letter-spacing: 1px;
+	font-size: 0.9em;
+	color: rgba(255, 255, 255, 0.6);
+}
+ol, ul {
+	padding: 0;
+	list-style: none;
+}
+ul.contact {
+	list-style: none;
+}
+ul.contact li {
+	display: inline-block;
+	padding: 0em 0.10em;
+	font-size: 1em;
+}
+a {
+	color: #cc3399;
+}
+.icon {
+	text-decoration: none;
+}
+.icon::before {
+	font-size: 1.25em;
+	text-decoration: none;
+	font-family: FontAwesome;
+	font-weight: normal;
+	font-style: normal;
+	-webkit-text-rendering: optimizeLegibility;
+	-moz-text-rendering: optimizeLegibility;
+	-ms-text-rendering: optimizeLegibility;
+	-o-text-rendering: optimizeLegibility;
+	text-rendering: optimizeLegibility;
+	-webkit-font-smoothing: antialiased;
+	-moz-font-smoothing: antialiased;
+	-ms-font-smoothing: antialiased;
+	-o-font-smoothing: antialiased;
+	font-smoothing: antialiased;
+	-webkit-font-feature-settings: "liga" 1, "dlig" 1;
+	-moz-font-feature-settings: "liga=1, dlig=1";
+	-ms-font-feature-settings: "liga" 1, "dlig" 1;
+	-o-font-feature-settings: "liga" 1, "dlig" 1;
+	font-feature-settings: "liga" 1, "dlig" 1;
+}
+.icon-rss::before {
+	content: "\f09e";
+}
+.icon-tumblr::before {
+	content: "\f322";
+}
+.icon-dribbble::before {
+	content: "\f313";
+}
+.icon-facebook::before {
+    background-image: url('{% static 'images/facebook.png' %}');
+}
+.icon-twitter::before {
+	content: "\f099";
+}
+ul.contact li a {
+	color: #fff;
+}
+ul.contact li a::before {
+	display: inline-block;
+	background: #4C93B9;
+	width: 40px;
+	height: 40px;
+	line-height: 40px;
+	text-align: center;
+	color: rgba(255, 255, 255, 1);
+}
+#copyright a {
+	text-decoration: none;
+	color: rgba(255, 255, 255, 0.8);
+}
+ul.contact li span {
+	display: none;
+	margin: 0;
+	padding: 0;
+}
+.icon-blogger-sign::before, .icon-blogger::before, .icon-delicious::before, .icon-dribbble-sign::before, .icon-dribbble::before, .icon-dropbox::before, .icon-drupal::before, .icon-evernote-sign::before, .icon-evernote::before, .icon-flickr-sign::before, .icon-flickr::before, .icon-forrst-sign::before, .icon-forrst::before, .icon-foursquare-sign::before, .icon-foursquare::before, .icon-git-fork::before, .icon-hacker-news::before, .icon-instagram::before, .icon-lastfm-sign::before, .icon-lastfm::before, .icon-paypal::before, .icon-picasa-sign::before, .icon-picasa::before, .icon-reddit::before, .icon-share-this-sign::before, .icon-share-this::before, .icon-skype::before, .icon-soundcloud::before, .icon-spotify::before, .icon-stack-overflow::before, .icon-tumblr-sign::before, .icon-tumblr::before, .icon-vimeo-sign::before, .icon-vimeo::before, .icon-wordpress-sign::before, .icon-wordpress::before, .icon-yelp-sign::before, .icon-yelp::before, .icon-youtube-sign::before, .icon-youtube::before {
+	font-family: "Font-Awesome-Social";
+}
+.container {
+	margin: 0px auto;
+	width: 1200px;
+}
+#footer .fbox1, #footer .fbox2, #footer .fbox3 {
+	float: left;
+	width: 320px;
+	padding: 0px 40px 0px 40px;
+}
+.icon-envelope::before {
+	content: "\f003";
+}
+.icon-phone::before {
+	content: "\f095";
+}
+.icon-map-marker::before {
+	content: "\f041";
+}
+#footer .icon {
+	display: block;
+	margin-bottom: 1em;
+	font-size: 3em;
+}
+#welcome {
+	overflow: hidden;
+	width: 1000px;
+	padding: 6em 100px 0em 100px;
+	text-align: center;
+}
+
+#three-column {
+	overflow: hidden;
+	margin-top: 5em;
+	padding-top: 1em;
+	border-top: 1px solid rgba(0,0,0,0.2);
+	text-align: center;
+}
+#portfolio {
+	overflow: hidden;
+	padding-top: 5em;
+	border-top: 1px solid rgba(0,0,0,0.2);
+}
+.column1, .column2, .column3, .column4 {
+	width: 282px;
+}
+.column1, .column2, .column3 {
+	float: left;
+	margin-right: 24px;
+}
+.column4 {
+	float: right;
+}
+#portfolio .box {
+	text-align: center;
+	color: rgba(0, 0, 0, 0.5);
+}
+h1, h2, h3 {
+	margin: 0;
+	padding: 0;
+	color: #404040;
+}
+#portfolio h3 {
+	display: block;
+	padding-bottom: 1em;
+	font-size: 1em;
+	color: rgba(0, 0, 0, 0.6);
+}
+.button {
+	display: inline-block;
+	margin-top: 2em;
+	padding: 0.8em 2em;
+	background: white;
+	line-height: 1.8em;
+	letter-spacing: 1px;
+	text-decoration: none;
+	font-size: 1em;
+	color: #fff;
+}
+.button::before {
+	display: inline-block;
+	background: #8DCB89;
+	margin-right: 1em;
+	width: 40px;
+	height: 40px;
+	line-height: 40px;
+	border-radius: 20px;
+	text-align: center;
+	color: #272925;
+}
+.image {
+	display: inline-block;
+	border: 1px solid rgba(0,0,0,.1);
+}
+.image-full {
+	display: block;
+	width: 100%;
+	margin: 0 0 3em 0;
+}
+#three-column #tbox1, #three-column #tbox2, #three-column #tbox3 {
+	float: left;
+	width: 320px;
+	padding: 80px 40px 80px 40px;
+}
+.title {
+	margin-bottom: 3em;
+}
+#three-column .title {
+	text-align: center;
+}
+.title h2 {
+	font-size: 2.8em;
+}
+#three-column h2 {
+	margin: 1em 0em;
+	font-size: 1.5em;
+	font-weight: 700;
+}
+#three-column .title h2 {
+	font-size: 1.6em;
+}
+#three-column .arrow-down {
+	border-top-color: #292929;
+}
+#header {
+	text-align: center;
+}
+#logo {
+	padding: 8em 0em 4em 0em;
+}
+#menu {
+	height: 60px;
+}
+#menu ul {
+	display: inline-block;
+	padding: 0em 2em;
+	text-align: center;
+}
+#menu li {
+	display: inline-block;
+}
+#menu li a, #menu li span {
+	display: inline-block;
+	padding: 0em 1.5em;
+	text-decoration: none;
+	font-size: 0.9em;
+	font-weight: 600;
+	text-transform: uppercase;
+	line-height: 60px;
+	outline: 0;
+	color: #fff;
+}
+#menu li:hover a, #menu li.active a, #menu li.active span {
+	background: #FFF;
+	color: black;
+}
+#logo h1 {
+	display: inline-block;
+	margin-bottom: 0.2em;
+	padding: 0.20em 0.9em;
+	font-size: 3.5em;
+}
+#logo a {
+	text-decoration: none;
+	color: #fff;
+
+}
+    .contact{
+        background-color: black;
+    }
+</style>
+	<link href="{% static 'css/elegant-icons-style.css' %}" rel="stylesheet" />
+	<link rel="shortcut icon" href="img/favicon.png">
+
+  <title>Digital Voting</title>
+
+  <!-- Bootstrap CSS -->
+  <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+  <!-- bootstrap theme -->
+  <link href="{% static 'css/bootstrap-theme.css' %}" rel="stylesheet">
+  <!--external css-->
+  <!-- font icon -->
+  <link href="{% static 'css/elegant-icons-style.css' %}" rel="stylesheet" />
+  <link href="{% static 'css/font-awesome.min.css' %}" rel="stylesheet" />
+  <!-- full calendar css-->
+  <link href="{% static 'assets/fullcalendar/fullcalendar/bootstrap-fullcalendar.css' %}" rel="stylesheet" />
+  <link href="{% static 'assets/fullcalendar/fullcalendar/fullcalendar.css' %}" rel="stylesheet" />
+  <!-- easy pie chart-->
+  <link href="{% static 'assets/jquery-easy-pie-chart/jquery.easy-pie-chart.css' %}" rel="stylesheet" type="text/css" media="screen" />
+  <!-- owl carousel -->
+  <link rel="stylesheet" href="{% static 'css/owl.carousel.css' %}" type="text/css">
+  <link href="{% static 'css/jquery-jvectormap-1.2.2.cs' %}s" rel="stylesheet">
+  <!-- Custom styles -->
+  <link rel="stylesheet" href="{% static 'css/fullcalendar.css' %}">
+  <link href="{% static 'css/widgets.css' %}" rel="stylesheet">
+  <link href="{% static 'css/style.css' %}" rel="stylesheet">
+  <link href="{% static 'css/style-responsive.css' %}" rel="stylesheet" />
+  <link href="{% static 'css/xcharts.min.css' %}" rel=" stylesheet">
+  <link href="{% static 'css/jquery-ui-1.10.4.min.css' %}" rel="stylesheet">
+    <script src="js/jquery.js' %}"></script>
+  <script src="{% static 'js/jquery-ui-1.10.4.min.js' %}"></script>
+  <script src="{% static 'js/jquery-1.8.3.min.js' %}"></script>
+  <script type="text/javascript" src="{% static 'js/jquery-ui-1.9.2.custom.min.js' %}"></script>
+  <!-- bootstrap -->
+  <script src="{% static 'js/bootstrap.min.js' %}"></script>
+  <!-- nice scroll -->
+  <script src="{% static 'js/jquery.scrollTo.min.js' %}"></script>
+  <script src="{% static 'js/jquery.nicescroll.js' %}" type="text/javascript"></script>
+  <!-- charts scripts -->
+  <script src="{% static 'assets/jquery-knob/js/jquery.knob.js' %}"></script>
+  <script src="{% static 'js/jquery.sparkline.js' %}" type="text/javascript"></script>
+  <script src="{% static 'assets/jquery-easy-pie-chart/jquery.easy-pie-chart.js' %}"></script>
+  <script src="{% static 'js/owl.carousel.js' %}"></script>
+  <!-- jQuery full calendar -->
+  <script src="{% static 'js/fullcalendar.min.js' %}"></script>
+    <!-- Full Google Calendar - Calendar -->
+    <script src="{% static 'assets/fullcalendar/fullcalendar/fullcalendar.js' %}"></script>
+    <!--script for this page only-->
+    <script src="{% static 'js/calendar-custom.js' %}"></script>
+    <script src="{% static 'js/jquery.rateit.min.js' %}"></script>
+    <!-- custom select -->
+    <script src="{% static 'js/jquery.customSelect.min.js' %}"></script>
+    <script src="{% static 'assets/chart-master/Chart.js' %}"></script>
+
+    <!--custome script for all page-->
+    <script src="{% static 'js/scripts.js' %}"></script>
+    <!-- custom script for this page-->
+    <script src="{% static 'js/sparkline-chart.js' %}"></script>
+    <script src="{% static 'js/easy-pie-chart.js' %}"></script>
+    <script src="{% static 'js/jquery-jvectormap-1.2.2.min.js' %}"></script>
+    <script src="{% static 'js/jquery-jvectormap-world-mill-en.js' %}"></script>
+    <script src="{% static 'js/xcharts.min.js' %}"></script>
+    <script src="{% static 'js/jquery.autosize.min.js' %}"></script>
+    <script src="{% static 'js/jquery.placeholder.min.js' %}"></script>
+    <script src="{% static 'js/gdp-data.js' %}"></script>
+    <script src="{% static 'js/morris.min.js' %}"></script>
+    <script src="{% static 'js/sparklines.js' %}"></script>
+    <script src="{% static 'js/charts.js' %}"></script>
+    <script src="{% static 'js/jquery.slimscroll.min.js' %}"></script>
+</head>
+<body>
+<div id="header-wrapper" style="background-image: url('{% static 'images/666.jpg' %}');">
+	<ul class="nav pull-right top-menu" style=" width: 300px; margin-top: 20px;">
+          <li class="dropdown">
+            <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+                            <span class="profile-ava">
+                                <img alt=""  style="height: 70px; width: 70px;" src="{{voter_image.url}}">
+                            </span>
+                            <span class="username">{{name}}</span>
+                            <b class="caret"></b>
+                        </a>
+            <ul class="dropdown-menu extended logout">
+              <li class="eborder-top">
+				<li>
+                <a href="{% url 'vchangepassword' %}"><i class="icon_lock_alt"></i> Change Password</a>
+              </li>
+              <li style="background-color: white;">
+                <a href="login.html" style="color: black"><i class="icon_key_alt"></i> Log Out</a>
+              </li>
+            </ul>
+          </li>
+          <!-- user login dropdown end -->
+        </ul>
+	<div class="container" id="header">
+		<div id="logo">
+            <h1><a href="#"><span style="color: white;">Digital Voting</span></a></h1>
+		</div>
+		<div id="menu">
+			<ul>
+				<li><a title="" accesskey="1" href="{% url 'vhome' %}">Home</a></li>
+				<li><a title="" accesskey="2" href="{% url 'vprofile' %}">Profile</a></li>
+				<li><a title="" accesskey="2" href="{% url 'viewcandidate' %}">Candidate</a></li>
+				<li><a title="" accesskey="3" href="{% url 'velection' %}">Election</a></li>
+				<li><a title="" accesskey="4" href="{% url 'vviewreport' %}">View Report</a></li>
+				<li><a title="" accesskey="5" href="{% url 'vcomplain' %}">Complain</a></li>
+				<li><a title="" accesskey="6" href="{% url 'logout' %}">Logout</a></li>
+			</ul>
+
+
+		</div>
+	</div>
+</div>
+ {% csrf_token %}
+{% block content %}
+
+
+
+{% endblock %}
+<div id="copyright" style="background-color: black">
+	<ul class="contact">
+		<li><a href="" class="social_twitter_circle"></a></li>
+		<li><a href="" class="social_facebook_circle"></a></li>
+		<li><a href="" class="icon_mail"></a></li>
+	</ul>
+</div>
+</body>
+</html>

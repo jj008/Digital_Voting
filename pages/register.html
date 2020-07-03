@@ -1,0 +1,106 @@
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Registration</title>
+
+    <!-- Font Icon -->
+    <link rel="stylesheet" href="{% static 'register/fonts/material-icon/css/material-design-iconic-font.min.css' %}">
+
+    <!-- Main css -->
+    <link rel="stylesheet" href="{% static 'register/css/style.css' %}">
+</head>
+<body>
+
+    <div class="main">
+
+        <div class="container">
+            <form method="POST" action="register" enctype="multipart/form-data" class="appointment-form" id="appointment-form">
+                {% csrf_token %}
+                <h2>Registration</h2>
+                <div class="">
+                    <h3 style="margin-bottom: 5px;">Voter Image</h3>
+                        <img src="{{voter_image.url}}" height="150" width="130" style="vertical-align: middle;">
+                </div>
+                <div class="form-group-1">
+                    <h3 style="margin-bottom: 0px;">Voter ID </h3>
+                    <input type="text" name="v_id"  required value="{{voterid_no}}" readonly>
+                </div>
+                <div class="form-group-1">
+                    <h3 style="margin-bottom: 0px;">Name </h3>
+                    <input type="text" name="name"  required value="{{name}}" readonly>
+                </div>
+                <div class="form-group-1">
+                    <h3 style="margin-bottom: 0px;">Father Name </h3>
+                    <input type="text" value="{{father_name}}" readonly>
+                </div>
+                <div class="form-group-1">
+                    <h3 style="margin-bottom: 0px;">Gender </h3>
+                    <input type="text" value="{{gender}}" readonly>
+                </div>
+                <div class="form-group-1">
+                    <h3 style="margin-bottom: 0px;">Date of Birth</h3>
+                    <input type="text" value="{{dateofbirth}}" readonly>
+                </div>
+                <div class="form-group-1">
+                    <h3 style="margin-bottom: 0px;">Address</h3>
+                    <input type="text" value="{{address}}" readonly>
+                </div>
+               
+                <div class="form-group-1">
+                    <h3 style="margin-bottom: 0px;">Mobile no.</h3>
+                    <input type="text" value="{{mobile_no}}" readonly>
+                </div>
+                 <div class="form-group-1">
+                    <h3 style="margin-bottom: 0px;">Email ID</h3>
+                    <input type="text" name="email" placeholder="Enter Email ID" required>
+                </div>
+                <div class="form-group-1">
+                    <h3 style="margin-bottom: 0px;">Pincode</h3>
+                    <input type="text" value="{{pincode}}" readonly>
+                </div>
+                 <div class="form-group-1">
+                    <h3 style="margin-bottom: 0px;">State</h3>
+                    <input type="text" value="{{state}}" readonly>
+                </div>
+                <div class="form-group-1">
+                    <h3 style="margin-bottom: 0px;">Parliamentary Constituency</h3>
+                    <input type="text" value="{{parliamentary}}" readonly>
+                </div>
+                <div class="form-group-1">
+                    <h3 style="margin-bottom: 0px;">Assembly Constituency</h3>
+                    <input type="text" value="{{assembly}}" readonly>
+                </div>
+                <div class="form-group-1">
+                    <h3 style="margin-bottom: 0px;">Enter Password</h3>
+                    <input name="password1" id="password" required="required" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
+                                       class="input--style-6" type="password"
+                                       onchange="this.setCustomValidity(this.validity.patternMismatch ? this.title : '');
+                                       if(this.checkValidity()) form.pwd2.pattern = RegExp.escape(this.value);"
+                                       title="Password must contain at least 8 characters, including UPPER/lowercase,numbers and special characters">
+                </div>
+                <div class="form-group-1">
+                    <h3 style="margin-bottom: 0px;">Re-enter Password</h3>
+                    <input name="password2" id="comfirm_password"  class="input--style-6" type="password"
+                                title="Please enter the same Password as above" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
+                                onchange="this.setCustomValidity(this.validity.patternMismatch ? this.title : '');">
+                </div>
+                <div class="form-group-1">
+                    <h3 style="margin-bottom: 0px;">Upload Video File</h3>
+                    <input style="color:white;" type="file" name="vidfile" accept="video/*" capture="user" required>
+                </div>
+                <div class="form-submit">
+                    <input type="submit" name="register"class="submit" value="Register">
+                </div>
+            </form>
+        </div>
+
+    </div>
+
+    <!-- JS -->
+    <script src="{% static 'register/vendor/jquery/jquery.min.js' %}"></script>
+    <script src="{% static 'register/js/main.js' %}"></script>
+</body><!-- This templates was made by Colorlib (https://colorlib.com) -->
+</html>
