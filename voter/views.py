@@ -30,7 +30,7 @@ def register_vid(request):
             if Voters.objects.filter(voterid_no=voterid):
                 register_vid.v = Voters.objects.get(voterid_no=voterid)
                 user_phone = str(register_vid.v.mobile_no)
-                url = "http://2factor.in/API/V1/8f35e7b6-6699-11ea-9fa5-0200cd936042/SMS/" + user_phone + "/AUTOGEN"
+                url = "http://2factor.in/API/V1/<api_key>/SMS/" + user_phone + "/AUTOGEN"
                 response = requests.request("GET", url)
                 data = response.json()
                 request.session['otp_session_data'] = data['Details']
@@ -45,7 +45,7 @@ def register_vid(request):
 def otp(request):
     if (request.method == "POST"):
         userotp = request.POST['otp']
-        url = "http://2factor.in/API/V1/8f35e7b6-6699-11ea-9fa5-0200cd936042/SMS/VERIFY/" + request.session[
+        url = "http://2factor.in/API/V1/<api_key>/SMS/VERIFY/" + request.session[
             'otp_session_data'] + "/" + userotp
         response = requests.request("GET", url)
         data = response.json()
