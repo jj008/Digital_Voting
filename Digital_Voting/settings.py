@@ -23,7 +23,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'rf=iv#+b4@pocgvrf&alo$cosg=i*-2e*)vndrw4o3mba++e)+'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
@@ -80,8 +80,8 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'Digital_Voting',
-        'USER': 'postgres',
-        'PASSWORD':'1234',
+        'USER': 'username',
+        'PASSWORD':'password',
         'HOST':'localhost'
     }
 }
@@ -134,7 +134,7 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'assets')
 
 EMAIL_BACKEND ='django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST='smtp.gmail.com'
-EMAIL_HOST_USER='email id'
+EMAIL_HOST_USER='email_id'
 EMAIL_HOST_PASSWORD='password'
 EMAIL_PORT=587
 EMAIL_USE_TLS = True
