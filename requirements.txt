@@ -6,6 +6,6 @@ idna==2.8
 opencv-contrib-python==4.4.0.46
 pandas
 Pillow
-psycopg2
+psycopg2==2.8.6
 requests==2.22.0
 setuptools==41.0.1
