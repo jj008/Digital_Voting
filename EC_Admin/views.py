@@ -423,7 +423,7 @@ def generate_report(request):
                 e_male=e_male+1
             elif vdetail.gender == 'Female':
                 e_female=e_female+1
-            elif vdetails.gender == 'Others':
+            elif vdetail.gender == 'Others':
                 e_others=e_others+1
         has_voted='yes'
         if Voted.objects.filter(election_id=election_id, state=state, constituency=constituency, has_voted=has_voted):
@@ -440,7 +440,7 @@ def generate_report(request):
                     v_male=v_male+1
                 elif vdetail.gender == 'Female':
                     v_female=v_female+1
-                elif vdetails.gender == 'Others':
+                elif vdetail.gender == 'Others':
                     v_others=v_others+1
             if e_male!=0:
                 p_male=(v_male/e_male)*100
