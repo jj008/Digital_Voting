@@ -4,7 +4,7 @@
 * Create Digital_Voting Database in PostgreSQL.
 * Configure Database section in settings.py.
 * python manage.py migrate
-* Create an account on https://2factor.in and paste api key from your 2factor account in voter/views.py at line 33 and line 48 for SMS OTP verification.
+* Create an account on https://2factor.in and paste api key from your 2factor account in voter/views.py at line 33, 48, 288 and 308 for SMS OTP verification.
 * Update email_id and password in settings.py for email OTP verification.
 * python manage.py createsuperuser
 * python manage.py runserver
