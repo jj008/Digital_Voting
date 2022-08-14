@@ -17,9 +17,13 @@ import itertools
 @staff_member_required(login_url='home')
 def adminhome(request):
     adminhome.username = request.session['admin_id']
-    a = EC_Admins.objects.get(ecadmin_id=adminhome.username)
-    adminhome.adminimage = a.ecadmin_image
-    return render(request,'admin/adminhome.html',{'username':adminhome.username,'image':adminhome.adminimage})
+    try:
+        a = EC_Admins.objects.get(ecadmin_id=adminhome.username)
+        adminhome.adminimage = a.ecadmin_image
+        return render(request,'admin/adminhome.html',{'username':adminhome.username,'image':adminhome.adminimage})
+    except:
+        messages.info(request, 'Add admin details in EC_Admins table')
+        return render(request, 'index.html')
 
 
 @login_required(login_url='home')
