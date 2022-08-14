@@ -285,7 +285,7 @@ def vote(request):
                 vote.candidateid = request.POST['can']
                 vmob = Voters.objects.get(voterid_no=v_id)
                 vmobno = str(vmob.mobile_no)
-                url = "http://2factor.in/API/V1/8f35e7b6-6699-11ea-9fa5-0200cd936042/SMS/" + vmobno + "/AUTOGEN"
+                url = "http://2factor.in/API/V1/<api_key>/SMS/" + vmobno + "/AUTOGEN"
                 response = requests.request("GET", url)
                 data = response.json()
                 request.session['otp_session_data'] = data['Details']
@@ -305,7 +305,7 @@ def vote(request):
 def subvoteotp(request):
     if (request.method == "POST"):
         userotp = request.POST['otp']
-        url = "http://2factor.in/API/V1/8f35e7b6-6699-11ea-9fa5-0200cd936042/SMS/VERIFY/" + request.session['otp_session_data'] + "/" + userotp
+        url = "http://2factor.in/API/V1/<api_key>/SMS/VERIFY/" + request.session['otp_session_data'] + "/" + userotp
         response = requests.request("GET", url)
         data = response.json()
         if data['Status'] == "Success":
