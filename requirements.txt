@@ -8,4 +8,4 @@ pandas
 Pillow
 psycopg2==2.8.6
 requests==2.22.0
-setuptools==41.0.1
+setuptools==65.5.1
