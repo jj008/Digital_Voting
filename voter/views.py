@@ -1,25 +1,23 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.contrib import messages
-from EC_Admin.models import Voters, Candidates, Election, Votes, Reports
 from django.contrib.auth.models import User, auth
-from django.http import JsonResponse
+from django.contrib.auth.decorators import login_required
+from django.core.files.storage import FileSystemStorage
+from django.core.mail import send_mail
+from django.conf import settings
+from Digital_Voting.settings import BASE_DIR
+from EC_Admin.models import Voters, Candidates, Election, Votes, Reports
+from .models import Voted, Complain
+import os
 import requests
 import datetime
-from .models import Voted, Complain
-from django.contrib.auth.decorators import login_required
-from Digital_Voting.settings import BASE_DIR
-from django.core.mail import send_mail
-import math, random
-
-import cv2,os
+import math
+import random
+import cv2
 import numpy as np
 from PIL import Image
-from django.conf import settings
-from django.core.files.storage import FileSystemStorage
-import itertools
 
 # Create your views here.
-
 def register_vid(request):
     if (request.method == 'POST'):
         voterid = request.POST['vid']
@@ -30,7 +28,7 @@ def register_vid(request):
             if Voters.objects.filter(voterid_no=voterid):
                 register_vid.v = Voters.objects.get(voterid_no=voterid)
                 user_phone = str(register_vid.v.mobile_no)
-                url = "http://2factor.in/API/V1/<api_key>/SMS/" + user_phone + "/AUTOGEN"
+                url = "http://2factor.in/API/V1/" + settings.TWO_FACTOR_API_KEY + "/SMS/" + user_phone + "/AUTOGEN"
                 response = requests.request("GET", url)
                 data = response.json()
                 request.session['otp_session_data'] = data['Details']
@@ -45,8 +43,7 @@ def register_vid(request):
 def otp(request):
     if (request.method == "POST"):
         userotp = request.POST['otp']
-        url = "http://2factor.in/API/V1/<api_key>/SMS/VERIFY/" + request.session[
-            'otp_session_data'] + "/" + userotp
+        url = "http://2factor.in/API/V1/" + settings.TWO_FACTOR_API_KEY + "/SMS/VERIFY/" + request.session['otp_session_data'] + "/" + userotp
         response = requests.request("GET", url)
         data = response.json()
         if data['Status'] == "Success":
@@ -72,12 +69,12 @@ def register(request):
         vidfile = request.FILES['vidfile']
         v=Voters.objects.get(voterid_no=voter_id)
         Id=str(v.id)
-        folder=BASE_DIR+"/DatasetVideo/"
+        folder=str(BASE_DIR)+"/DatasetVideo/"
         fs=FileSystemStorage(location=folder)
         vidfilename=Id+vidfile.name
         filename=fs.save(vidfilename,vidfile)
         name=v.voterid_no
-        faceDetect = cv2.CascadeClassifier(BASE_DIR + "/haarcascade_frontalface_default.xml")
+        faceDetect = cv2.CascadeClassifier(str(BASE_DIR) + "/haarcascade_frontalface_default.xml")
         cam = cv2.VideoCapture(folder+"/"+vidfilename)
         sampleNum = 0
         while (True):
@@ -87,7 +84,7 @@ def register(request):
             for (x, y, w, h) in faces:
                 cv2.rectangle(img, (x, y), (x + w, y + h), (0, 255, 0), 2)
                 sampleNum = sampleNum + 1
-                cv2.imwrite(BASE_DIR + "/TrainingImage/"+ name +"."+ Id + '.' + str(sampleNum) + ".jpg",gray[y:y + h, x:x + w])
+                cv2.imwrite(str(BASE_DIR) + "/TrainingImage/"+ name +"."+ Id + '.' + str(sampleNum) + ".jpg",gray[y:y + h, x:x + w])
                 cv2.imshow("Face", img)
             if cv2.waitKey(100) & 0xFF == ord('q'):
                 break
@@ -100,7 +97,7 @@ def register(request):
         recognizer = cv2.face.LBPHFaceRecognizer_create()
 
         def getImagesAndLabels(path):
-            imagePaths = [os.path.join(path, f) for f in os.listdir(path)]
+            imagePaths = [os.path.join(path, f) for f in os.listdir(path) if f != ".gitkeep"]
             faces = []
             Ids = []
             for imagePath in imagePaths:
@@ -110,14 +107,14 @@ def register(request):
                 faces.append(imageNp)
                 Ids.append(Id)
             return faces, Ids
-        faces, Id = getImagesAndLabels(BASE_DIR + "/TrainingImage/")
+        faces, Id = getImagesAndLabels(str(BASE_DIR) + "/TrainingImage/")
         recognizer.train(faces, np.array(Id))
-        recognizer.save(BASE_DIR + "/TrainingImageLabel/Trainner.yml")
+        recognizer.save(str(BASE_DIR) + "/TrainingImageLabel/Trainner.yml")
         if password1 == password2:
             add_user = User.objects.create_user(username=voter_id, password=password1, email=email)
             add_user.save()
             messages.info(request, 'Voter Registered')
-            return render(request, 'index.html')
+            return redirect("/")
 
 
 @login_required(login_url='home')
@@ -246,13 +243,13 @@ def vote(request):
             vidofv=Voters.objects.get(voterid_no=v_id)
             detectuserid=str(vidofv.id)
             vidfile=request.FILES['vidfile']
-            folder=BASE_DIR+"/VotingDSVideo/"
+            folder=str(BASE_DIR)+"/VotingDSVideo/"
             fs=FileSystemStorage(location=folder)
             vidfilename=detectuserid+vidfile.name
             filename=fs.save(vidfilename,vidfile)
             rec = cv2.face.LBPHFaceRecognizer_create()
-            rec.read(BASE_DIR+"/TrainingImageLabel/Trainner.yml")
-            faceDetect = cv2.CascadeClassifier(BASE_DIR+"/haarcascade_frontalface_default.xml")
+            rec.read(str(BASE_DIR)+"/TrainingImageLabel/Trainner.yml")
+            faceDetect = cv2.CascadeClassifier(str(BASE_DIR)+"/haarcascade_frontalface_default.xml")
             cam = cv2.VideoCapture(folder+"/"+vidfilename)
             font = cv2.FONT_HERSHEY_SIMPLEX
             flag=0
@@ -285,7 +282,7 @@ def vote(request):
                 vote.candidateid = request.POST['can']
                 vmob = Voters.objects.get(voterid_no=v_id)
                 vmobno = str(vmob.mobile_no)
-                url = "http://2factor.in/API/V1/<api_key>/SMS/" + vmobno + "/AUTOGEN"
+                url = "http://2factor.in/API/V1/" + settings.TWO_FACTOR_API_KEY + "/SMS/" + vmobno + "/AUTOGEN"
                 response = requests.request("GET", url)
                 data = response.json()
                 request.session['otp_session_data'] = data['Details']
@@ -305,7 +302,7 @@ def vote(request):
 def subvoteotp(request):
     if (request.method == "POST"):
         userotp = request.POST['otp']
-        url = "http://2factor.in/API/V1/<api_key>/SMS/VERIFY/" + request.session['otp_session_data'] + "/" + userotp
+        url = "http://2factor.in/API/V1/" + settings.TWO_FACTOR_API_KEY + "/SMS/VERIFY/" + request.session['otp_session_data'] + "/" + userotp
         response = requests.request("GET", url)
         data = response.json()
         if data['Status'] == "Success":
@@ -473,4 +470,3 @@ def submitcomplain(request):
         addcomplain.save()
         messages.info(request, 'complain submitted')
         return render(request, 'voter/vcomplain.html',{'username':vhome.username,'image':vhome.image})
-

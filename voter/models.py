@@ -1,6 +1,5 @@
 from django.db import models
 
-
 # Create your models here.
 class Voted(models.Model):
     election_id = models.CharField(max_length=50)

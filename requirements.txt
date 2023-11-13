@@ -1,11 +1,5 @@
-certifi==2019.11.28
-chardet==3.0.4
-Django==2.2.3
-facerecog==0.0.1
-idna==2.8
-opencv-contrib-python==4.4.0.46
-pandas
-Pillow
-psycopg2==2.8.6
-requests==2.22.0
-setuptools==41.0.1
+Djangp==4.2.7
+requests==2.31.0
+Pillow==10.1.0
+opencv-contrib-python==4.8.1.78
+psycopg2==2.9.9

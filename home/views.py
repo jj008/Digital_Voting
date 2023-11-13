@@ -1,14 +1,9 @@
-from pyexpat.errors import messages
+from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.contrib.auth.models import User, auth
-from django.shortcuts import render, redirect
+from django.conf import settings
 from EC_Admin.models import Voters
 import requests
-from django.http import JsonResponse
-from django.http import HttpResponse
-from django.contrib.auth.decorators import login_required
-from django.contrib.admin.views.decorators import staff_member_required
-
 
 # Create your views here.
 def home(request):
@@ -57,7 +52,7 @@ def forgot_password(request):
         if voter is not None:
             v = Voters.objects.get(voterid_no=forgot_password.voter_id)
             vmobno = str(v.mobile_no)
-            url = "http://2factor.in/API/V1/8f35e7b6-6699-11ea-9fa5-0200cd936042/SMS/" + vmobno + "/AUTOGEN"
+            url = "http://2factor.in/API/V1/" + settings.TWO_FACTOR_API_KEY + "/SMS/" + vmobno + "/AUTOGEN"
             response = requests.request("GET", url)
             data = response.json()
             request.session['otp_session_data'] = data['Details']
@@ -72,8 +67,7 @@ def forgot_password(request):
 def forgotpassotp(request):
     if (request.method == "POST"):
         userotp = request.POST['otp']
-        url = "http://2factor.in/API/V1/8f35e7b6-6699-11ea-9fa5-0200cd936042/SMS/VERIFY/" + request.session[
-            'otp_session_data'] + "/" + userotp
+        url = "http://2factor.in/API/V1/" + settings.TWO_FACTOR_API_KEY + "/SMS/VERIFY/" + request.session['otp_session_data'] + "/" + userotp
         response = requests.request("GET", url)
         data = response.json()
         if data['Status'] == "Success":
@@ -99,4 +93,3 @@ def setnewpassword(request):
 def logout(request):
     auth.logout(request)
     return redirect('/')
-
