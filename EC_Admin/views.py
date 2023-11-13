@@ -1,16 +1,11 @@
-from pyexpat.errors import messages
-from django.shortcuts import render, redirect
-from django.http import HttpResponse
-import requests
-import datetime
+from django.shortcuts import render
 from django.contrib import messages
 from django.contrib.auth.models import User, auth
-from .models import Voters, Candidates, Election, Votes, EC_Admins, Reports
-from voter.models import Voted, Complain
 from django.contrib.auth.decorators import login_required
 from django.contrib.admin.views.decorators import staff_member_required
-import itertools
-
+from .models import Voters, Candidates, Election, Votes, EC_Admins, Reports
+from voter.models import Voted, Complain
+import datetime
 
 # Create your views here.
 @login_required(login_url='home')
