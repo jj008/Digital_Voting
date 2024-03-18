@@ -1,4 +1,4 @@
-Django==4.2.7
+Django==4.2.11
 requests==2.31.0
 Pillow==10.1.0
 opencv-contrib-python==4.8.1.78
